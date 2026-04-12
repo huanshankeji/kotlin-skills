@@ -28,7 +28,7 @@ directories, source sets, or modules — their generated file facade classes
 often reports **misleading "Unresolved reference"** errors on symbols that are
 actually defined correctly. This makes the root cause difficult to identify.
 
-## When to apply this skill
+## When to use
 
 Apply this debugging procedure when **all** of the following are true:
 
@@ -129,7 +129,8 @@ remain:
 In Kotlin Multiplatform projects, `commonMain`, `jvmMain`, and other source
 sets are compiled together for JVM targets. A file `Utils.kt` with package
 `com.example` in `commonMain` and another `Utils.kt` with the same package in
-`jvmMain` will clash.
+`jvmMain` will clash. A conventional solution here is to rename the
+platform-specific file with a platform suffix, e.g., `Utils.jvm.kt`.
 
 ### Multi-module Gradle projects
 
@@ -157,4 +158,4 @@ in the project.
 
 - [Kotlin documentation: Packages and imports](https://kotlinlang.org/docs/packages.html)
 - [Kotlin documentation: Java interop — Package-level functions](https://kotlinlang.org/docs/java-to-kotlin-interop.html#package-level-functions)
-- [JetBrains YouTrack — Kotlin issue tracker](https://youtrack.jetbrains.com/issues/KT)
+- [KT-83413: Misleading "Unresolved reference" errors caused by file facade class name clashes](https://youtrack.jetbrains.com/issue/KT-83413)

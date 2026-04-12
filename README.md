@@ -28,6 +28,9 @@ cp -r skills/kotlin-debugging-unresolved-reference-file-clash .github/skills/
 
 # For Claude Code
 cp -r skills/kotlin-debugging-unresolved-reference-file-clash .claude/skills/
+
+# Universal (works with multiple agents)
+cp -r skills/kotlin-debugging-unresolved-reference-file-clash .agents/skills/
 ```
 
 ### Repository layout
