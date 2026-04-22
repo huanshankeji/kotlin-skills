@@ -8,6 +8,7 @@ Also see https://github.com/Kotlin/kotlin-agent-skills for the skills maintained
 
 | Skill | Description |
 |---|---|
+| [gradle-wrapper-update](skills/gradle-wrapper-update/) | Updates the Gradle wrapper to a specific version by running the wrapper task twice, keeping the wrapper script, properties, and jar consistent |
 | [kotlin-debugging-unresolved-reference-file-clash](skills/kotlin-debugging-unresolved-reference-file-clash/) | Diagnoses and fixes Kotlin JVM "Unresolved reference" compilation errors caused by file facade class name clashes |
 
 ## Installation
