@@ -1,10 +1,10 @@
 ---
 name: gradle-wrapper-update
 description: >
-  Updates the Gradle wrapper to a specific version by running the wrapper task
-  twice, which updates the wrapper script, properties file, and jar. Use
-  whenever a Gradle project needs its wrapper upgraded or downgraded to a
-  target Gradle version.
+  Updates the Gradle wrapper by running the wrapper task twice, keeping the
+  wrapper scripts, properties file, and jar consistent. Supports updating to
+  the latest version or a specific version. Use whenever a Gradle project needs
+  its wrapper upgraded or downgraded.
 license: Apache-2.0
 metadata:
   author: huanshankeji
@@ -15,18 +15,18 @@ metadata:
 
 ## Background
 
-The Gradle wrapper consists of three files that must all stay consistent:
+The Gradle wrapper consists of four files that must all stay consistent:
 
 - `gradle/wrapper/gradle-wrapper.properties` — declares the Gradle
   distribution URL and version.
 - `gradle/wrapper/gradle-wrapper.jar` — the bootstrap jar that downloads the
   declared distribution.
-- `gradlew` / `gradlew.bat` — the shell scripts that invoke the bootstrap jar.
+- `gradlew` — the POSIX shell script that invokes the bootstrap jar.
+- `gradlew.bat` — the Windows batch script that invokes the bootstrap jar.
 
-Manually editing `gradle-wrapper.properties` only updates the declared version
-string. It does **not** update the `gradle-wrapper.jar` or the `gradlew`
-scripts, which may be required for newer Gradle versions to work correctly.
-Always use the `wrapper` task to perform a full, consistent update.
+Both `gradlew` and `gradlew.bat` must exist so the project works on all
+platforms. Do **not** manually edit any of these files. Always use the
+`wrapper` task to perform a full, consistent update.
 
 ## When to use
 
@@ -34,29 +34,26 @@ Apply this skill whenever you need to:
 
 - Upgrade the Gradle wrapper to a newer Gradle version.
 - Downgrade the Gradle wrapper to an older Gradle version.
-- Ensure the wrapper jar and scripts are in sync with the declared version
-  after any manual edits to `gradle-wrapper.properties`.
-
-## How to find the target version
-
-The recommended update command for a given Gradle release is listed on its
-release notes page. For example:
-
-- Gradle 9.4.1 → https://docs.gradle.org/9.4.1/release-notes.html
-- Gradle 8.14 → https://docs.gradle.org/8.14/release-notes.html
-
-Look for the "Upgrade instructions" or "Updating" section on the release notes
-page to confirm the exact command recommended for that release.
 
 ## Update procedure
 
 ### Step 1: Run the wrapper task twice
 
 Running the `wrapper` task once updates `gradle-wrapper.properties` and
-regenerates the `gradlew` scripts. Running it a **second time** lets the newly
-declared version of Gradle download itself and regenerate the
-`gradle-wrapper.jar` with the correct version, ensuring all three wrapper
-components are consistent.
+regenerates the `gradlew` and `gradlew.bat` scripts. Running it a **second
+time** lets the newly declared version of Gradle download itself and
+regenerate the `gradle-wrapper.jar` with the correct version, ensuring all
+four wrapper components are consistent.
+
+**Option A — update to the latest Gradle version (recommended starting point):**
+
+```bash
+./gradlew wrapper --gradle-version=latest && ./gradlew wrapper
+```
+
+Try this first. If you need a specific version instead, use Option B.
+
+**Option B — update to a specific Gradle version:**
 
 ```bash
 ./gradlew wrapper --gradle-version=<TARGET_VERSION> && ./gradlew wrapper
@@ -68,10 +65,22 @@ Replace `<TARGET_VERSION>` with the desired Gradle version, for example:
 ./gradlew wrapper --gradle-version=9.4.1 && ./gradlew wrapper
 ```
 
+To find the version string for a specific release, consult its release notes
+page. The latest release notes are always at
+https://docs.gradle.org/current/release-notes.html, and a specific release
+such as 9.4.1 is at https://docs.gradle.org/9.4.1/release-notes.html.
+
 ### Step 2: Verify the update
 
-Check that `gradle/wrapper/gradle-wrapper.properties` now references the
-correct distribution URL:
+Run `./gradlew -v` to confirm the wrapper script works and to see the active
+Gradle version:
+
+```bash
+./gradlew -v
+```
+
+Then check that `gradle/wrapper/gradle-wrapper.properties` references the
+expected distribution URL:
 
 ```bash
 cat gradle/wrapper/gradle-wrapper.properties
@@ -97,20 +106,19 @@ gradlew.bat
 
 ## Guardrails
 
-- **Never** update the wrapper by only editing `gradle-wrapper.properties`
-  manually. Always run `./gradlew wrapper` so the jar and scripts are also
-  updated.
+- **Never** manually edit `gradle-wrapper.properties` or any other wrapper
+  file. Always run `./gradlew wrapper` so all four files are updated together.
 - Run the `wrapper` task **twice** as shown above. The first run updates the
   properties and scripts; the second run lets the new Gradle version update the
   jar.
-- After updating, run the project's build or test task (e.g.,
-  `./gradlew build`) to confirm the project works correctly with the new
-  Gradle version.
+- After updating, run `./gradlew -v` to verify the wrapper works, then run the
+  project's build or test task (e.g., `./gradlew build`) to confirm the project
+  works correctly with the new Gradle version.
 - If the project uses a non-default distribution type (`-all` instead of
   `-bin`), preserve that by passing `--distribution-type=all`:
 
   ```bash
-  ./gradlew wrapper --gradle-version=<TARGET_VERSION> --distribution-type=all && ./gradlew wrapper
+  ./gradlew wrapper --gradle-version=latest --distribution-type=all && ./gradlew wrapper
   ```
 
 ## References
