@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "huanshankeji-kotlin-skills",
+  "version": "1.0.0",
+  "description": "AI agent skills for Kotlin by @huanshankeji.",
+  "author": {
+    "name": "Chengdu Huanshan Technology",
+    "email": "chengduhuanshankeji@hotmail.com",
+    "url": "https://github.com/huanshankeji"
+  },
+  "homepage": "https://github.com/huanshankeji/kotlin-skills",
+  "repository": "https://github.com/huanshankeji/kotlin-skills",
+  "license": "Apache-2.0",
+  "keywords": ["skills", "kotlin", "gradle", "huanshankeji"]
+}

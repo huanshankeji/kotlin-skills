@@ -13,6 +13,14 @@ Also see https://github.com/Kotlin/kotlin-agent-skills for the skills maintained
 
 ## Installation
 
+### Cursor
+
+In Cursor, open **Customize** → **Add Marketplace** (or the Plugins tab) and import:
+
+```text
+https://github.com/huanshankeji/kotlin-skills
+```
+
 ### Using the skills CLI
 
 ```bash
