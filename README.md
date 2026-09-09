@@ -21,6 +21,23 @@ In Cursor, open **Customize** → **Add Marketplace** (or the Plugins tab) and i
 https://github.com/huanshankeji/kotlin-skills
 ```
 
+### Claude Code
+
+```
+/plugin marketplace add huanshankeji/kotlin-skills
+```
+
+```
+/plugin install huanshankeji-kotlin-skills@huanshankeji-kotlin-skills
+```
+
+### Codex
+
+```bash
+codex plugin marketplace add huanshankeji/kotlin-skills
+codex plugin add huanshankeji-kotlin-skills@huanshankeji-kotlin-skills
+```
+
 ### Using the skills CLI
 
 ```bash

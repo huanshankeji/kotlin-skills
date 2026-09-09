@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "huanshankeji-kotlin-skills",
+  "description": "AI agent skills for Kotlin by @huanshankeji",
+  "owner": {
+    "name": "Chengdu Huanshan Technology",
+    "email": "chengduhuanshankeji@hotmail.com",
+    "url": "https://github.com/huanshankeji"
+  },
+  "plugins": [
+    {
+      "name": "huanshankeji-kotlin-skills",
+      "description": "AI agent skills for Kotlin by @huanshankeji.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

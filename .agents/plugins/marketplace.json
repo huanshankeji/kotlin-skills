@@ -1,0 +1,20 @@
+{
+  "name": "huanshankeji-kotlin-skills",
+  "interface": {
+    "displayName": "Huanshankeji Kotlin skills"
+  },
+  "plugins": [
+    {
+      "name": "huanshankeji-kotlin-skills",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
